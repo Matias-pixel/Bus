@@ -90,11 +90,15 @@
                         <td>
                             <%= usuario.pass %>
                         </td>
+                        
                         <td>
                             <%= usuario.estadoNombre %>
                         </td>
                         <td>
-                            <a href="/" class="btn" id="submit-btn"><i style="color: rgb(161, 15, 15);" class="bi bi-trash-fill"></i></a>
+                            <%= usuario.tipoNombre %>
+                        </td>
+                        <td>
+                            <a  onclick="confirmar(<%= usuario.id %>, '<%= usuario.nombre %>')" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
                         </td>
 
                     </tr> 

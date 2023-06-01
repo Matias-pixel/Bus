@@ -60,7 +60,7 @@ app.use(express.static(path.join(__dirname,'public')));
 function backup() {
 
     const now = Date.now();
-    const backupCommand = "C:\\xampp\\mysql\\bin\\mysqldump -u root bus > "+now+"backup.sql";
+    const backupCommand = "C:\\xampp\\mysql\\bin\\mysqldump -u root base_buses > "+now+"respaldo.sql";
   
     exec(backupCommand, (error, stdout, stderr) => {
       if (error) {

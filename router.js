@@ -14,6 +14,10 @@ router.get('/registro',(req, res)=>{
     res.render('registro');
 });
 
+router.get('/respaldo',(req, res)=>{
+    res.render('respaldo');
+});
+
 
 const crud = require('./controllers/crud');
 

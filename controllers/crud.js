@@ -18,7 +18,7 @@ exports.validacion = (req, res)=>{
                         alertIcon:'succes',
                         showConfirmButton: false,
                         timer: 1500,
-                        ruta: 'index'
+                        ruta: 'respaldo'
                        
                     })
                 }else{

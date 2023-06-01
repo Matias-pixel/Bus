@@ -44,16 +44,13 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container" data-bs-theme="dark">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <a class="navbar-brand" href="#!">Ticket de buses</a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" onclick="cambiarTema()"><i id="dl-icon" class="bi bi-moon-fill"></i></a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,7 +96,7 @@
             </div>
 
             <div class="col-lg-6">
-                <section class="py-5 border-bottom">
+                <section class="py-5">
                     <form action="/actualizar_asiento" method="POST">
                     <div class="col-lg-6 col-xl-6">
                         <div class="card mb-5 mb-xl-0">
@@ -123,14 +120,12 @@
             <script>
 
                 let valoresSeleccionados = [];
-                let asientosSeleccionados = [];
 
                 function agregarValor(valor) {
                     let index = valoresSeleccionados.indexOf(valor);
                     let asiento = document.getElementById("identificacion");
                     if (index === -1) {
                         valoresSeleccionados.push(valor);
-                        asientosSeleccionados.push(asiento);
 
                     } else {
                         valoresSeleccionados.splice(index, 1);

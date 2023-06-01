@@ -1,3 +1,4 @@
+const { render } = require('ejs');
 const conexion = require('../database/bd');
 
 exports.validacion = (req, res)=>{
@@ -61,3 +62,20 @@ exports.saveUser =(req, res) => {
         }
     });
 }
+
+exports.actualizar_asiento = (req, res) => {
+
+    const valoresTexto = req.body.inputValues; // Valor del campo de entrada como una cadena
+    const nuevosValores = valoresTexto.split(','); // Divide la cadena en un array utilizando la coma como separador
+    console.log(nuevosValores);
+
+
+    conexion.query('UPDATE asiento SET ? WHERE id IN (?)', [{estado_asiento_id_fk:2}, nuevosValores], (error, results)=>{
+        console.log(results);
+        conexion.query('SELECT * FROM asiento', (error, results) => {
+            res.redirect('/index');
+        })
+
+    })
+
+};

@@ -7,7 +7,15 @@ router.get('/',  (req, res)=>{
 })
 
 router.get('/index', (req, res)=>{
-    res.render('index')
+    
+    conexion.query('SELECT * FROM asiento',(error , results) =>{
+        if(error){
+            throw error;
+        }else{
+            res.render('index' ,{results:results})
+        }
+    })
+
 })
 
 router.get('/registro',(req, res)=>{
@@ -24,6 +32,7 @@ const crud = require('./controllers/crud');
 
 router.post('/validacion',crud.validacion);
 router.post('/saveUser', crud.saveUser);
+router.post('/actualizar_asiento', crud.actualizar_asiento);
 
 
 

@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
         <link rel="icon" type="image/jpg" href="favicon.png" />
-    
-        <link rel="stylesheet" href="main.css">
-    
-        <!--FONT AWESOME -->
-        <script src="https://kit.fontawesome.com/ca048bf1d7.js" crossorigin="anonymous"></script>
-    
-        <!--BOOTSTRAP-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
-        <!--BOXICON-->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <link rel="stylesheet" href="/main.css">
+            <script src="/navbarC.js"></script>
+            
+            <!--FONT AWESOME -->
+            <script src="https://kit.fontawesome.com/ca048bf1d7.js" crossorigin="anonymous"></script>
     
         <!--GOOGLE FONTS -->
         <link rel="stylesheet"
@@ -24,43 +22,37 @@
     
         <!--DATATABLE-->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-        <title>Usuarios</title>
+    
+    
+        <title>Usuarios deshabilitados</title>
     </head>
-<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    
+</head>
+<body>
 
-    <!-- INICIO NAV-->
-
-            <!-- Responsive navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container" data-bs-theme="dark">
-                    <a class="navbar-brand" href="#!">Ticket de buses</a>
-                    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" onclick="cambiarTema()"><i id="dl-icon" class="bi bi-moon-fill"></i></a></li>
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav> 
-
-    <!-- FIN NAV-->
-
-    <DIV>
-        <div class="text-c ptb-3">
-            <H1>LISTA DE USUARIOS</H1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container" data-bs-theme="dark">
+            <a class="navbar-brand" href="#!">Ticket de buses</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" onclick="cambiarTema()"><i id="dl-icon" class="bi bi-moon-fill"></i></a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Logout</a></li>
+                </ul>
+            </div>
         </div>
-    </DIV>
+    </nav> 
 
-    <!--Inicio lista de tipos de usuario-->
-
-
+    <div>
+        <div class="text-c ptb-3">
+            <H1>LISTA USUARIOS DESHABILITADOS</H1>
+        </div>
+    </div>
 
     <div class="table-responsive container-fluid">
+        <a title="Volver" data-bs-toggle="tooltip" href="/superAdmin" class="btn" id="submit-btn"><span class="material-symbols-outlined">undo</span></a>
 
-        <a  href="/usuariosDes" class="btn mtb-1 col-md-2 col-12" id="submit-btn">Habilitar usuario</a>
-        <br><br>
         <table id="table" class="table table-striped text-center mt-4">
             <thead id="titletable">
                 <tr>
@@ -74,40 +66,37 @@
                 </tr>
             </thead>
 
-            <tbody>
-                <% results.forEach((usuario)=>{ %>
+            <% results.forEach((usuario)=>{ %>
 
-                    <tr>
-                        <td>
-                            <%= usuario.id %>
-                        </td>
-                        <td>
-                            <%= usuario.nombre %>
-                        </td>
-                        <td>
-                            <%= usuario.correo %>
-                        </td>
-                        <td>
-                            <%= usuario.pass %>
-                        </td>
-                        <td>
-                            <%= usuario.estadoNombre %>
-                        </td>
-                        <td>
-                            <%= usuario.tipoNombre %>
-                        </td>
-                        <td>
+                <tr>
+                    <td>
+                        <%= usuario.id %>
+                    </td>
+                    <td>
+                        <%= usuario.nombre %>
+                    </td>
+                    <td>
+                        <%= usuario.correo %>
+                    </td>
+                    <td>
+                        <%= usuario.pass %>
+                    </td>
+                    <td>
+                        <%= usuario.estadoNombre %>
+                    </td>
+                    <td>
+                        <%= usuario.tipoNombre %>
+                    </td>
+                    <td>
+                        <a onclick="confirmar(<%= usuario.id%>, '<%= usuario.nombre%>')" class="btn btn-success"><span class="material-symbols-outlined">add_task</span></a>
+                    </td>
 
-                            <a onclick="confirmar(<%= usuario.id %>, '<%= usuario.nombre %>')" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
-                        </td>
-
-                    </tr> 
-                    <% }) %>
-            </tbody>
+                </tr> 
+                <% }) %>
 
         </table>
     </div>
-    <!--cdn bootstrap js-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -185,7 +174,7 @@
         function confirmar(id, nombre) {
             Swal.fire({
                 title: 'Atencion!',
-                text: "¿Estas seguro de querer eliminar al usuario " + nombre + "?",
+                text: "¿Estas seguro de querer habilitar al usuario " + nombre + "?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -195,7 +184,7 @@
             }).then((result) => {
 
                 if (result.isConfirmed) {
-                    window.location = '/deleteUser/' + id;
+                    window.location = '/habilitarUser/' + id;
 
                 }
 
@@ -203,7 +192,6 @@
         }
 
     </script>
-
-
+    
 </body>
 </html>

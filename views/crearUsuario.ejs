@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir usuario</title>
+</head>
+<body>
+
+    
+    <DIV>
+        <div class="text-c ptb-3">
+            <H1>INGRESAR USUARIO</H1>
+        </div>
+    </DIV>
+        
+
+    <!--comienzo del formulario de nuevo tipo de usuario-->
+
+    <div class="container mt-4">
+        <div class="card border-secondary">
+            <div class="card-header" id="titlecard">Ingresar nuevo tipo de usuario</div>
+            <div class="card-body">
+                <form action="/createUserType" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"  tabindex='1'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"  tabindex='1'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"  tabindex='1'>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn" id="submit-btn" tabindex="5">Guardar</button>
+                    <a href="/crudtipo" class="btn" id="cancel-btn">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

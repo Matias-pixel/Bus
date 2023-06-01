@@ -48,8 +48,8 @@
     <!-- FIN NAV-->
 
     <DIV>
-        <div class="text-c ptb-3">
-            <H1>LISTA DE USUARIOS</H1>
+        <div class="text-center p-5">
+            <H1>MANETENEDOR DE USUARIOS</H1>
         </div>
     </DIV>
 
@@ -94,11 +94,7 @@
                             <%= usuario.estadoNombre %>
                         </td>
                         <td>
-                            <%= usuario.tipoNombre %>
-                        </td>
-                        <td>
-
-                            <a onclick="confirmar(<%= usuario.id %>, '<%= usuario.nombre %>')" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
+                            <a href="/" class="btn" id="submit-btn"><i style="color: rgb(161, 15, 15);" class="bi bi-trash-fill"></i></a>
                         </td>
 
                     </tr> 

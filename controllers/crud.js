@@ -5,7 +5,7 @@ exports.validacion = (req, res)=>{
     const pass = req.body.password;
 
     if(correo && pass){
-        conexion.query('SELECT * FROM usuario WHERE correo = ? AND pass = ? WHERE estado_usuario_id_fk = 1 ', [correo, pass], (error, results)=>{
+        conexion.query('SELECT * FROM usuario WHERE correo = ? AND pass = ? AND estado_usuario_id_fk = 1 ', [correo, pass], (error, results)=>{
             if(error){
                 throw error;
             }else{

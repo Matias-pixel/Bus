@@ -72,14 +72,14 @@
             <div class="col-lg-6">
 
                 <section class="py-5 text-center" id="features">
-                    <div class="d-inline-flex">
+                    <div class="d-inline-flex p-3 border-start border-end">
                         <div class="container-fluid">
                             <div class="row gx-5">
                                 <% results.forEach((asiento) => { %>
                                     <% if(asiento.estado_asiento_id_fk === 1){ %>
                                         <div class="col-lg-3 p-2">
                                             <p id="identificacion" hidden><%= asiento.numero %></p>
-                                            <button onclick="agregarValor(this.value)" value="<%= asiento.id %>" class="habilitado feature rounded-3 text-white mb-3"><%= asiento.numero %></button>
+                                            <button onclick="agregarValor(this.value), agregarTexto(this)" value="<%= asiento.id %>" class="habilitado feature rounded-3 text-white mb-3"><%= asiento.numero %></button>
                                         </div>
                                     <%}else{%>
                                         <div class="col-lg-3 p-2">
@@ -106,9 +106,10 @@
                                     Asientos seleccionados
                                 </div>
                                 <div class="mb-3">
-                                    <input id="inputValues" name="inputValues" type="text" class="form-control display-4 fw-bold fs-2">
+                                    <input id="miInput" name="miInput" type="text" class="form-control display-4 fw-bold fs-2">
+                                    <input type="text" id="inputValues" name="inputValues" hidden>
                                 </div>
-                                <div class="d-grid"><button type="submit" class="btn btn-primary">Comprar</button></div>
+                                <div class="d-grid"><button type="submit" class="btn btn-primary">Comprar Ticket</button></div>
                             </div>
                         </div>
                     </form>
@@ -129,13 +130,35 @@
 
                     } else {
                         valoresSeleccionados.splice(index, 1);
+
                     }
                 
                     let input = document.getElementById("inputValues");
                     input.value = valoresSeleccionados.join(", ");
-                }   
+                }  
+                
+                
+                var arrayBotones = [];
 
+                function agregarTexto(boton) {
+                    var texto = boton.innerText;
+                    
+                    if (arrayBotones.includes(texto)) {
+                      // Si el texto ya está presente en el array, se elimina
+                        var indice = arrayBotones.indexOf(texto);
+                        arrayBotones.splice(indice, 1);
+                    }  else {
+                      // Si el texto no está presente en el array, se agrega
+                        arrayBotones.push(texto);
+                    }
 
+                    mostrarArrayEnInput();
+                    }
+
+                function mostrarArrayEnInput() {
+                    var input = document.getElementById("miInput");
+                    input.value = arrayBotones.join(", ");
+                }
             </script>
 
 

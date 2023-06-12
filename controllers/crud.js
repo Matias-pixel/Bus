@@ -11,36 +11,37 @@ exports.validacion = (req, res)=>{
                 throw error;
             }else{
                 if(results.length > 0){
-                    if(results.tipo_usuario_id_fk === 1){
+                    //console.log('ACAAAAAAAAAAAAA',results[0].tipo_usuario_id_fk);
+                    if(results[0].tipo_usuario_id_fk === 1){
                         //ENTRA
                         res.render('login',{
                             alert:true,
                             alertTitle: 'Conexion exitosa',
                             alertMessage: 'Bienvenido! ',
-                            alertIcon:'succes',
+                            alertIcon:'success',
                             showConfirmButton: false,
                             timer: 1500,
-                            ruta: '/superadmin'
+                            ruta: 'superadmin'
                         })
-                    }if(results.tipo_usuario_id_fk === 2){
+                    }if(results[0].tipo_usuario_id_fk === 2){
                         res.render('login',{
                             alert:true,
                             alertTitle: 'Conexion exitosa',
                             alertMessage: 'Bienvenido! ',
-                            alertIcon:'succes',
+                            alertIcon:'success',
                             showConfirmButton: false,
                             timer: 1500,
-                            ruta: '/respaldo'
+                            ruta: 'respaldo'
                         })
-                    }if(results.tipo_usuario_id_fk === 2){
+                    }if(results[0].tipo_usuario_id_fk === 2){
                         res.render('login',{
                             alert:true,
                             alertTitle: 'Conexion exitosa',
                             alertMessage: 'Bienvenido! ',
-                            alertIcon:'succes',
+                            alertIcon:'success',
                             showConfirmButton: false,
                             timer: 1500,
-                            ruta: '/index'
+                            ruta: 'index'
                         })
                     }else{
                         //NO ENTRA

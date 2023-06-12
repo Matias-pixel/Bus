@@ -88,6 +88,23 @@ function backup() {
   
 }
 
+
+
+function actualizarIntervalo(){
+  const tiempoInput = document.getElementById('tiempoInput');
+  const tiempo = parseInt(tiempoInput.value);
+  const intervalo = tiempo * 60 * 1000;
+  clearInterval(intervalID);
+  intervalID = setInterval(backup, numero * 60 * 1000);
+}
+
+app.get('/respaldin', (res,req) => {
+  actualizarIntervalo();
+});
+
+// Ejecutar la función backup() cada 1 minutos HILO HILO HILO HILO
+//setInterval(backup, 3 * 60 * 1000);
+
 app.get('/respaldoo', (res,req) => {
     backup();
 });
@@ -98,3 +115,4 @@ app.use('/', require('./router'));
 app.listen(5000, ()=>{
     console.log("Server corriendo");
 });
+

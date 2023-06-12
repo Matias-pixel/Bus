@@ -31,8 +31,21 @@
             </form>
           </div>
 
+          <div class="col-sm-12" style="margin-top: 10%;">
+            <form action="/respaldin" method="GET">
+              <h1 class="text-center">Tiempo del respaldo</h1>
+              
+              <h5 style="margin-top: 20px;">1. Realizar un Respaldo ahora</h5>
+              <input class="form-control form-control-lg" type="number" name="numero" id="tiempoInput"><br>
+              <button type="submit" id="btn" class="btn btn-info" style="width: 100%;">Guardar tiempo</button>
+            </form>
+          </div>
+          
+
         </div>
     </div>
+
+   
 
     <script>
         const btn = document.getElementById('botonRespaldo');

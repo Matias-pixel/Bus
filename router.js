@@ -137,6 +137,28 @@ router.get('/editAsiento/:id', (req, res)=>{
     })
 })
 
+router.get('/habilitarAsientoA/:id', (req, res)=>{
+    const id = req.params.id;
+    conexion.query('UPDATE asiento SET estado_asiento_id_fk = 1 WHERE id = ?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.redirect('/mantenedor_admin')
+        }
+    })
+})
+
+router.get('/habilitarAsiento/:id', (req, res)=>{
+    const id = req.params.id;
+    conexion.query('UPDATE asiento SET estado_asiento_id_fk = 1 WHERE id = ?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.redirect('/mantenedor')
+        }
+    })
+})
+
 
 
 const crud = require('./controllers/crud');

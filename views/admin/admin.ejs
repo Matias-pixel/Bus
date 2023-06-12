@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Busnify</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/fullstyle.css" rel="stylesheet" />
+        <script src="/modovista.js"></script>
+    </head>
+    <body data-bs-theme="light" onload="activarModoAutomatico()" >
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg fixed-top shadow-sm" id="mainNav">
+            <div class="container px-5">
+                <a class="navbar-brand fw-bold" href="#page-top"><img class="m-1" src="assets/img/bellota.png" height="23px" style="padding-right: 1%;" alt="">Busnify</a>
+                <li class="nav-item"><a class="nav-link" onclick="cambiarTema()"><i id="dl-icon" class="bi bi-moon-fill"></i></a></li>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="/admin">Asientos</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="/mantenedor_admin">Mantenedor</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="/admin/respaldo">Respaldo</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="/logout">Cerrar sesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Mashead header-->
+            <!-- Mashead header-->
+            <header class="masthead">
+                <div class="container px-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6">
+                            <!-- Mashead text and app badges-->
+                            <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                                <h1 class="display-1 lh-1 mb-3 text-gradient">Bienvenido!</h1>
+                                <p class="lead fw-normal mb-1">En esta seccion podras comprar los voletos de tu viaje seleccionando los asientos que deseas ocupar.</p>
+                                <p class="lead fw-normal text-muted mb-5"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- Masthead device mockup feature-->
+                            <div class="masthead-device-mockup">
+                                <img class="img-fluid" src="img/circulin.svg" width="100%" alt="">
+                                <img class="img-fluid marginal" src="img/bus.png" width="100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    
+            
+            <!-- Quote/testimonial aside-->
+            <aside class="text-center bg-gradient-primary-to-secondary">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-xl-8">
+                            <div class="h2 fs-1 text-white mb-4">"La mejor forma de viajar, sin pagar demas"</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </aside>
+
+            <h1></h1>
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="container-fluid px-5 pt-5">
+                        <div class="row gx-5">
+                            <% results.forEach((asiento) => { %>
+                                <% if(asiento.estado_asiento_id_fk === 1){ %>
+                                    <div class="col-md-3 col-3">
+                                        <p id="identificacion" hidden><%= asiento.numero %></p>
+                                        <button onclick="agregarValor(this.value), agregarTexto(this)" value="<%= asiento.id %>" class="habilitado feature rounded-3 text-white fs-1 mb-3"><%= asiento.numero %></button>
+                                    </div>
+                                <%}else{%>
+                                    <div class="col-md-3 col-3">
+                                        <button onclick="agregarValor(this.value)" value="<%= asiento.id %>" class="deshabilitado feature rounded-3 text-white mb-3 disable" disabled><%= asiento.numero %></button>
+                                    </div>
+                                <%}%>
+                            <% }) %>
+
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="col-lg-6">
+                    <section class="py-5">
+                        <form action="/actualizar_asiento_admin" method="POST">
+                        <div class="col-lg-6 col-12">
+                            <div class="card mb-5 mb-xl-0">
+                                <div class="card-body p-5">
+                                    <div class="small text-uppercase fw-bold">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        Asientos seleccionados
+                                    </div>
+                                    <div class="mb-3">
+                                        <input id="miInput" name="miInput" type="text" class="form-control display-4 fw-bold fs-2">
+                                        <input type="text" id="inputValues" name="inputValues" hidden>
+                                    </div>
+                                    <div class="d-grid"><button type="submit" class="btn btn-primary">Comprar Ticket</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        </div>
+                    </section>
+
+
+
+            <!--IGNORAR ESTO-->
+            <section class="py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-8 col-lg-3 col-xl-3   pt-2 px-4 pb-2">
+                            <div class="h-100">
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <p class="lead fw-bolder fs-3">
+                                        <!-- Product price-->
+                                        <p class=" lead card-text fs-5"> </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div> 
+                </div>
+            </section>
+        
+            <!-- Footer-->
+            <footer class="bg-black text-center py-5">
+                <div class="container px-5">
+                    <div class="text-white-50 small">
+                        <div class="mb-2">&copy; Acornify 2023. Todos los derechos reservados.</div>
+                        <a href="#!">Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a href="#!">Terminos y condiciones</a>
+                        <span class="mx-1">&middot;</span>
+                        <a href="#!">Contactanos</a>
+                    </div>
+                </div>
+            </footer>
+            
+            <script>
+
+                let valoresSeleccionados = [];
+
+                function agregarValor(valor) {
+                    let index = valoresSeleccionados.indexOf(valor);
+                    let asiento = document.getElementById("identificacion");
+                    if (index === -1) {
+                        valoresSeleccionados.push(valor);
+
+                    } else {
+                        valoresSeleccionados.splice(index, 1);
+
+                    }
+                
+                    let input = document.getElementById("inputValues");
+                    input.value = valoresSeleccionados.join(", ");
+                }  
+                
+                
+                var arrayBotones = [];
+
+                function agregarTexto(boton) {
+                    var texto = boton.innerText;
+                    
+                    if (arrayBotones.includes(texto)) {
+                      // Si el texto ya está presente en el array, se elimina
+                        var indice = arrayBotones.indexOf(texto);
+                        arrayBotones.splice(indice, 1);
+                    }  else {
+                      // Si el texto no está presente en el array, se agrega
+                        arrayBotones.push(texto);
+                    }
+
+                    mostrarArrayEnInput();
+                    }
+
+                function mostrarArrayEnInput() {
+                    var input = document.getElementById("miInput");
+                    input.value = arrayBotones.join(", ");
+                }
+            </script>
+
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+

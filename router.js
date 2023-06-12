@@ -29,6 +29,34 @@ router.get('/mantenedor', (req, res)=>{
     
 })
 
+router.get('/admin', (req, res)=>{
+    conexion.query('SELECT * FROM asiento', (error, results) => {
+        if(error){
+            throw error;
+        }else{
+            res.render('admin/admin' ,{results:results})
+        }
+    })
+    
+})
+
+router.get('/mantenedor_admin', (req, res)=>{
+    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
+        if(error){
+            throw error;
+        }else{
+            res.render('admin/mantenedor_admin' ,{asiento:asiento})
+        }
+    })
+    
+})
+
+router.get('/respaldo_admin',(req, res)=>{
+    res.render('admin/respaldo_admin');
+});
+
+
+
 router.get('/modificarAsiento/:id',(req, res)=>{
     const id = req.params.id;
     
@@ -104,6 +132,10 @@ const crud = require('./controllers/crud');
 router.post('/validacion',crud.validacion);
 router.post('/saveUser', crud.saveUser);
 router.post('/actualizar_asiento', crud.actualizar_asiento);
+
+router.post('/crearAsiento', crud.crearAsiento);
+router.post('/actualizar_asiento_admin', crud.actualizar_asiento_admin);
+router.post('/crearAsientoAdmin', crud.crearAsientoAdmin);
 
 
 

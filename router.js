@@ -57,17 +57,7 @@ router.get('/respaldo_admin',(req, res)=>{
 
 
 
-router.get('/modificarAsiento/:id',(req, res)=>{
-    const id = req.params.id;
-    
-    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
-        if(error){
-            throw error;
-        }else{
-            res.render('modificarAsiento' ,{asiento:asiento})
-        }
-    })
-})
+
 
 router.get('/registro',(req, res)=>{
     res.render('registro');
@@ -83,7 +73,7 @@ router.get('/superadmin', (req, res) => {
         if(error){
             throw error;
         }else{
-            res.render('superadmin' ,{results:results})
+            res.render('admin/superadmin' ,{results:results})
         }
     })
 })
@@ -108,7 +98,7 @@ router.get('/usuariosDes', (req, res) => {
         if(error){
             throw error;
         }else{
-            res.render('usuariosDes' ,{results:results})
+            res.render('admin/usuariosDes' ,{results:results})
         }
     })
 })
@@ -125,6 +115,29 @@ router.get('/habilitarUser/:id', (req, res)=>{
     })
 })
 
+router.get('/editAsientoA/:id', (req, res)=>{
+    const id = req.params.id;
+    conexion.query('SELECT * FROM asiento WHERE id = ?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.render('admin/editarAsientoAdmin', {results:results[0]})
+        }
+    })
+})
+
+router.get('/editAsiento/:id', (req, res)=>{
+    const id = req.params.id;
+    conexion.query('SELECT * FROM asiento WHERE id = ?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.render('editarAsiento', {results:results[0]})
+        }
+    })
+})
+
+
 
 const crud = require('./controllers/crud');
 
@@ -138,6 +151,8 @@ router.post('/actualizar_asiento_admin', crud.actualizar_asiento_admin);
 router.post('/crearAsientoAdmin', crud.crearAsientoAdmin);
 
 
-
+//MIOS
+router.post('/actualizarAsiento', crud.actualizarAsiento);
+router.post('/actualizarAsientoA', crud.actualizarAsientoA);
 
 module.exports = router;

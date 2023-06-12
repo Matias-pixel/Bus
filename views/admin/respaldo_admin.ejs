@@ -38,47 +38,77 @@
                           <li class="nav-item"><a class="nav-link me-lg-3" href="/admin">Asientos</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="/mantenedor_admin">Mantenedor</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="/respaldo_admin">Respaldo</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="/logout">Cerrar sesion</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="/">Cerrar sesion</a></li>
                         </ul>
                     </ul>
                 </div>
             </div>
         </nav>
 
-    <div class="container">
-        <div class="row">
-
-          <div class="col-sm-12" style="margin-top: 10%;">
-            <form action="/respaldoo" method="get">
-              <h1 class="text-center">OPCIONES RESPALDO</h1>
-              <h5 style="margin-top: 20px;">1. Realizar un Respaldo ahora</h5>
-              <button type="submit" id="botonRespaldo" class="btn btn-info" style="width: 100%;">Realizar Respaldo</button>
-            </form>
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-sm-12" style="margin-top: 10%;">
+              <form action="/respaldoo" method="get">
+                <h1 class="text-center">OPCIONES RESPALDO</h1>
+                <h5 style="margin-top: 20px;">1. Realizar un Respaldo ahora</h5>
+                <button type="submit" id="botonRespaldo" class="btn btn-info" style="width: 100%;">Realizar Respaldo</button>
+              </form>
+            </div>
+  
+            <div class="col-sm-12">
+              <form action="/cargarRespaldo" method="post" enctype="multipart/form-data">
+                <h5 style="margin-top: 20px;">2. Importar Respaldo Existente</h5>
+                <input type="file" name="archivo"><br>
+                <button type="submit" id="botonCargar" class="btn btn-secondary" style="width: 100%;margin-top: 20px;">Cargar SQL</button>
+              </form>
+            </div>
+  
+            <div class="col-sm-12" style="margin-top: 10%;">
+              <form action="/actualizarIntervalo" method="POST">
+                <h1 class="text-center">Tiempo del respaldo</h1>
+                <h5 style="margin-top: 20px;">3. Realizar un Respaldo ahora</h5>
+                <input type="number" name="tiempo" min="1" max="9" />
+                <button type="submit" id="botonCambiar">Actualizar Intervalo</button>
+              </form>
+            </div>
+            
+  
           </div>
+      </div>
 
-          <div class="col-sm-12">
-            <form action="/cargarRespaldo" method="post" enctype="multipart/form-data">
-              <h5 style="margin-top: 20px;">2. Importar Respaldo Existente</h5>
-              <input type="file" name="archivo"><br>
-              <button type="submit" id="botonCargar" class="btn btn-secondary" style="width: 100%;margin-top: 20px;">Cargar SQL</button>
-            </form>
-          </div>
-
-        </div>
-    </div>
+          <!--cdn alertas js-->
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        const btn = document.getElementById('botonRespaldo');
-        const btn2 = document.getElementById('botonCargar');
-  
-        btn.addEventListener('click', ()=>{
-          alert('Respaldo creado correctamente!')
-        })
-  
-        btn2.addEventListener('click', ()=>{
-          alert('Respaldo importado correctamente!')
-        })
-  
-      </script>
+      const btn = document.getElementById('botonRespaldo');
+      const btn2 = document.getElementById('botonCargar');
+      const btn3 = document.getElementById('botonCambiar')
+
+      btn3.addEventListener('click',()=>{
+        Swal.fire(
+          'Todo correcto!',
+          'El tiempo se actualizó correctamente!',
+          'success'
+        );
+      })
+
+      btn.addEventListener('click', ()=>{
+        Swal.fire(
+          'Todo correcto!',
+          'Se realizó el respaldo correctamente!',
+          'success'
+        );
+      })
+
+      btn2.addEventListener('click', ()=>{
+        Swal.fire(
+          'Todo correcto!',
+          'Respaldo importado correctamente!',
+          'success'
+        );
+      })
+
+    </script>
 </body>
 </html>

@@ -21,7 +21,7 @@ exports.validacion = (req, res)=>{
                             alertIcon:'success',
                             showConfirmButton: false,
                             timer: 1500,
-                            ruta: 'superadmin'
+                            ruta: 'mantenedor_admin'
                         })
                     }if(results[0].tipo_usuario_id_fk === 2){
                         res.render('login',{
@@ -31,9 +31,9 @@ exports.validacion = (req, res)=>{
                             alertIcon:'success',
                             showConfirmButton: false,
                             timer: 1500,
-                            ruta: 'respaldo'
+                            ruta: 'mantenedor'
                         })
-                    }if(results[0].tipo_usuario_id_fk === 2){
+                    }if(results[0].tipo_usuario_id_fk === 3){
                         res.render('login',{
                             alert:true,
                             alertTitle: 'Conexion exitosa',
@@ -151,5 +151,61 @@ exports.crearAsientoAdmin = (req, res) => {
         res.redirect('/mantenedor_admin')
 
     })
+
+}
+
+exports.actualizarAsiento = (req, res) =>{
+    const id = req.body.id;
+    const nombre = req.body.asiento;
+    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
+        conexion.query('UPDATE asiento SET ? WHERE id = ?', [{numero:nombre}, id], (error, results)=>{
+            if(error){
+                throw error;
+            }
+            else{
+                res.render('EditarAsiento',{
+                    alert:true,
+                    alertTitle: 'Todo correcto',
+                    alertMessage: 'Asiento actualizado correctamente!',
+                    alertIcon:'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    ruta: 'mantenedor',
+                    asiento : asiento,
+                    results:results
+                    
+                })
+            }
+        })
+    })
+    
+
+}
+
+exports.actualizarAsientoA = (req, res) =>{
+    const id = req.body.id;
+    const nombre = req.body.asiento;
+    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
+        conexion.query('UPDATE asiento SET ? WHERE id = ?', [{numero:nombre}, id], (error, results)=>{
+            if(error){
+                throw error;
+            }
+            else{
+                res.render('admin/EditarAsientoAdmin',{
+                    alert:true,
+                    alertTitle: 'Todo correcto',
+                    alertMessage: 'Asiento actualizado correctamente!',
+                    alertIcon:'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    ruta: 'admin/mantenedor_admin',
+                    asiento : asiento,
+                    results:results
+                    
+                })
+            }
+        })
+    })
+    
 
 }

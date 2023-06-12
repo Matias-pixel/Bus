@@ -32,12 +32,11 @@
           </div>
 
           <div class="col-sm-12" style="margin-top: 10%;">
-            <form action="/respaldin" method="GET">
+            <form action="/actualizarIntervalo" method="POST">
               <h1 class="text-center">Tiempo del respaldo</h1>
-              
               <h5 style="margin-top: 20px;">1. Realizar un Respaldo ahora</h5>
-              <input class="form-control form-control-lg" type="number" name="numero" id="tiempoInput"><br>
-              <button type="submit" id="btn" class="btn btn-info" style="width: 100%;">Guardar tiempo</button>
+              <input type="number" name="tiempo" min="1" max="9" />
+              <button type="submit" id="botonCambiar">Actualizar Intervalo</button>
             </form>
           </div>
           
@@ -45,18 +44,38 @@
         </div>
     </div>
 
+      <!--cdn alertas js-->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+
    
 
     <script>
         const btn = document.getElementById('botonRespaldo');
         const btn2 = document.getElementById('botonCargar');
+        const btn3 = document.getElementById('botonCambiar')
+
+        btn3.addEventListener('click',()=>{
+          Swal.fire(
+            'Todo correcto!',
+            'El tiempo se actualizó correctamente!',
+            'success'
+          );
+        })
   
         btn.addEventListener('click', ()=>{
-          alert('Respaldo creado correctamente!')
+          Swal.fire(
+            'Todo correcto!',
+            'Se realizó el respaldo correctamente!',
+            'success'
+          );
         })
   
         btn2.addEventListener('click', ()=>{
-          alert('Respaldo importado correctamente!')
+          Swal.fire(
+            'Todo correcto!',
+            'Respaldo importado correctamente!',
+            'success'
+          );
         })
   
       </script>

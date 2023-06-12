@@ -88,21 +88,31 @@ function backup() {
   
 }
 
+var intervalID = 0;
 
 
-function actualizarIntervalo(){
-  const tiempoInput = document.getElementById('tiempoInput');
-  const tiempo = parseInt(tiempoInput.value);
+// Ruta para manejar la solicitud POST del formulario
+app.post('/actualizarIntervalo', (req, res) => {
+  // Obtener el valor del tiempo del formulario
+  const tiempo = parseInt(req.body.tiempo);
+
+  // Calcular el intervalo de tiempo en milisegundos
   const intervalo = tiempo * 60 * 1000;
-  clearInterval(intervalID);
-  intervalID = setInterval(backup, numero * 60 * 1000);
-}
 
-app.get('/respaldin', (res,req) => {
-  actualizarIntervalo();
+  // Limpiar el intervalo anterior (si existe)
+  clearInterval(intervalID);
+
+  // Establecer el nuevo intervalo de tiempo
+  intervalID = setInterval(backup, intervalo);
+
+  // Enviar una respuesta al cliente
+  console.log('ACAAAAAAAAAAAAAAAAA',intervalID)
 });
 
-// Ejecutar la función backup() cada 1 minutos HILO HILO HILO HILO
+
+
+
+//Ejecutar la función backup()
 //setInterval(backup, 3 * 60 * 1000);
 
 app.get('/respaldoo', (res,req) => {

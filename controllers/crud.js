@@ -101,3 +101,15 @@ exports.actualizar_asiento = (req, res) => {
     })
 
 };
+
+exports.modificarAsiento = (req, res) => {
+    const valoresTexto = req.body.inputValues; // Valor del campo de entrada como una cadena
+
+    conexion.query('UPDATE asiento SET ? WHERE id IN (?)', [{estado_asiento_id_fk:2}, nuevosValores], (error, results)=>{
+        console.log(results);
+        conexion.query('SELECT * FROM asiento', (error, results) => {
+            res.redirect('/index');
+        })
+
+    })
+}

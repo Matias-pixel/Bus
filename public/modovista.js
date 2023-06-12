@@ -1,14 +1,30 @@
-const oscuro = () => {
-    document.querySelector("body").setAttribute("data-bs-theme", "dark");
-    document.querySelector("#dl-icon").setAttribute("class", "bi bi-sun-fill");
+const temaOscuro = () =>{
+    document.querySelector("body").setAttribute("data-bs-theme","dark");
+    document.querySelector("#dl-icon").setAttribute("class", "bi bi-brightness-high");
 }
 
-const claro = () => {
-    document.querySelector("body").setAttribute("data-bs-theme", "light");
-    document.querySelector("#dl-icon").setAttribute("class", "bi bi-moon-fill");
+const temaClaro = () =>{
+    document.querySelector("body").setAttribute("data-bs-theme","light");
+    document.querySelector("#dl-icon").setAttribute("class", "bi bi-moon");
 }
 
 const cambiarTema = () => {
-    document.querySelector("body").getAttribute("data-bs-theme") === "light" ?
-    oscuro() : claro ();
+    document.querySelector("body").getAttribute("data-bs-theme") === "light"? 
+    temaOscuro() : temaClaro();
+}
+
+
+const activarModoAutomatico = () => {
+
+    var fecha = new Date();
+    var hora = fecha.getHours();
+
+
+    if (hora >= 19 || hora < 6){
+        temaClaro();
+    }else{
+        temaOscuro();
+
+    }
+
 }

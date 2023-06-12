@@ -18,6 +18,29 @@ router.get('/index', (req, res)=>{
 
 })
 
+router.get('/mantenedor', (req, res)=>{
+    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
+        if(error){
+            throw error;
+        }else{
+            res.render('mantenedor' ,{asiento:asiento})
+        }
+    })
+    
+})
+
+router.get('/modificarAsiento/:id',(req, res)=>{
+    const id = req.params.id;
+    
+    conexion.query('SELECT asiento.id AS id, asiento.numero AS numero, estadoasiento.nombre AS estado FROM asiento INNER JOIN estadoasiento ON asiento.estado_asiento_id_fk = estadoasiento.id', (error, asiento) => {
+        if(error){
+            throw error;
+        }else{
+            res.render('modificarAsiento' ,{asiento:asiento})
+        }
+    })
+})
+
 router.get('/registro',(req, res)=>{
     res.render('registro');
 });

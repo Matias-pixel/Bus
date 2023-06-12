@@ -11,29 +11,51 @@ exports.validacion = (req, res)=>{
                 throw error;
             }else{
                 if(results.length > 0){
-                    //ENTRA
-                    res.render('login',{
-                        alert:true,
-                        alertTitle: 'Conexion exitosa',
-                        alertMessage: 'Bienvenido! ',
-                        alertIcon:'succes',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        ruta: 'respaldo'
-                       
-                    })
-                }else{
-                    //NO ENTRA
-                    res.render('login',{
-                        alert:true,
-                        alertTitle: 'Error',
-                        alertMessage: 'Nombre o contraseña incorrectos!',
-                        alertIcon:'error',
-                        showConfirmButton: true,
-                        timer: false,
-                        ruta: ''
-                    })
+                    if(results.tipo_usuario_id_fk === 1){
+                        //ENTRA
+                        res.render('login',{
+                            alert:true,
+                            alertTitle: 'Conexion exitosa',
+                            alertMessage: 'Bienvenido! ',
+                            alertIcon:'succes',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            ruta: '/superadmin'
+                        })
+                    }if(results.tipo_usuario_id_fk === 2){
+                        res.render('login',{
+                            alert:true,
+                            alertTitle: 'Conexion exitosa',
+                            alertMessage: 'Bienvenido! ',
+                            alertIcon:'succes',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            ruta: '/respaldo'
+                        })
+                    }if(results.tipo_usuario_id_fk === 2){
+                        res.render('login',{
+                            alert:true,
+                            alertTitle: 'Conexion exitosa',
+                            alertMessage: 'Bienvenido! ',
+                            alertIcon:'succes',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            ruta: '/index'
+                        })
+                    }else{
+                        //NO ENTRA
+                        res.render('login',{
+                            alert:true,
+                            alertTitle: 'Error',
+                            alertMessage: 'Nombre o contraseña incorrectos!',
+                            alertIcon:'error',
+                            showConfirmButton: true,
+                            timer: false,
+                            ruta: ''
+                        })
+                    }
                 }
+                
             }
         })
     }
